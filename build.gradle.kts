@@ -72,11 +72,8 @@ kotlin {
         @Suppress("UNUSED_VARIABLE")
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${Versions.coroutines}")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.serialization_runtime}")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.serialization_runtime}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.serializationRuntime}")
                 implementation("com.soywiz.korlibs.klock:klock:1.5.0")
                 api("com.danielgergely.kgl:kgl-metadata:${Versions.kgl}")
             }
@@ -86,7 +83,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTest}")
                 implementation("spek:spek-dsl:${Versions.spek}")
             }
         }
@@ -94,8 +91,6 @@ kotlin {
         @Suppress("UNUSED_VARIABLE")
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}")
                 implementation("io.ktor:ktor-server-core:${Versions.ktor}")
                 implementation("io.ktor:ktor-server-netty:${Versions.ktor}")
                 implementation("io.ktor:ktor-server-host-common:${Versions.ktor}")
@@ -149,20 +144,17 @@ kotlin {
             kotlin.srcDir("src/jsMain/js")
 
             dependencies {
-                implementation(kotlin("stdlib-js"))
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${Versions.coroutines}")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:${Versions.serialization_runtime}")
-                implementation("org.jetbrains.kotlinx:kotlinx-html-js:0.7.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-html-js:${Versions.kotlinxHtml}")
 
                 implementation("com.github.markaren:three.kt:v0.88-ALPHA-7")
                 implementation("com.danielgergely.kgl:kgl-js:${Versions.kgl}")
 
                 // kotlin react:
-                implementation("org.jetbrains:kotlin-react:16.13.1-pre.104-kotlin-1.3.72")
-                implementation("org.jetbrains:kotlin-react-dom:16.13.1-pre.104-kotlin-1.3.72")
-                implementation("org.jetbrains:kotlin-styled:1.0.0-pre.104-kotlin-1.3.72")
+                implementation("org.jetbrains:kotlin-react:${Versions.kotlinReact}")
+                implementation("org.jetbrains:kotlin-react-dom:${Versions.kotlinReact}")
+                implementation("org.jetbrains:kotlin-styled:${Versions.kotlinStyled}")
                 implementation(npm("styled-components", "^4.4.1"))
-                implementation(npm("inline-style-prefixer"))
+                implementation(npm("inline-style-prefixer", "^6.0.0"))
 
                 implementation(npm("babel-loader", "^8.0.6"))
                 implementation(npm("@babel/core", "^7.4.5"))
@@ -176,12 +168,16 @@ kotlin {
                 implementation(npm("chroma-js", "^2.0.3"))
                 implementation(npm("css-loader", "^2.1.1"))
 
-                implementation("subroh0508.net.kotlinmaterialui:core:0.4.2")
-                implementation("subroh0508.net.kotlinmaterialui:lab:0.4.2")
-                implementation("org.jetbrains:kotlin-css-js") {
+                implementation("subroh0508.net.kotlinmaterialui:core:0.4.4")
+                implementation("subroh0508.net.kotlinmaterialui:lab:0.4.4")
+                implementation("org.jetbrains.kotlinx:kotlinx-html-js") {
                     // pre.104 is required by subroh0508.net.kotlinmaterialui:core:0.4.2
-                    version { strictly("1.0.0-pre.104-kotlin-1.3.72") }
+                    version { strictly(Versions.kotlinxHtml) }
                 }
+//                implementation("org.jetbrains:kotlin-css-js") {
+//                    // pre.104 is required by subroh0508.net.kotlinmaterialui:core:0.4.2
+//                    version { strictly("1.0.0-pre.104-kotlin-1.3.72") }
+//                }
                 implementation(npm("@material-ui/core", "~4.8"))
                 implementation(npm("@material-ui/icons", "~4.9"))
 
