@@ -35,8 +35,9 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version Versions.kotlin
     id("org.jetbrains.dokka") version "0.10.1"
     id("com.github.johnrengelman.shadow") version "5.2.0"
-    id("com.github.ben-manes.versions") version "0.28.0"
+    id("com.github.ben-manes.versions") version "0.29.0"
     id("maven-publish")
+    id("name.remal.check-dependency-updates") version "1.0.211"
 }
 
 repositories {
@@ -103,7 +104,7 @@ kotlin {
                 implementation(files("src/jvmMain/lib/javax.util.property-2_0.jar")) // required by ftd2xxj
                 implementation(files("src/jvmMain/lib/TarsosDSP-2.4-bin.jar")) // sound analysis
 
-                implementation("org.joml:joml:1.9.20")
+                implementation("org.joml:joml:1.9.25")
 
                 implementation("com.danielgergely.kgl:kgl-jvm:${Versions.kgl}")
 
@@ -132,7 +133,7 @@ kotlin {
                 runtimeOnly("org.spekframework.spek2:spek-runner-junit5:${Versions.spek}")
                 runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}")
 
-                implementation("io.mockk:mockk:1.9.3")
+                implementation("io.mockk:mockk:1.10.0")
 
                 // For RunOpenGLTests:
                 implementation("org.junit.platform:junit-platform-launcher:1.6.2")
@@ -168,18 +169,18 @@ kotlin {
                 implementation(npm("chroma-js", "^2.0.3"))
                 implementation(npm("css-loader", "^2.1.1"))
 
-                implementation("subroh0508.net.kotlinmaterialui:core:0.4.4")
-                implementation("subroh0508.net.kotlinmaterialui:lab:0.4.4")
-                implementation("org.jetbrains.kotlinx:kotlinx-html-js") {
-                    // pre.104 is required by subroh0508.net.kotlinmaterialui:core:0.4.2
-                    version { strictly(Versions.kotlinxHtml) }
-                }
+                implementation("subroh0508.net.kotlinmaterialui:core:0.4.5")
+                implementation("subroh0508.net.kotlinmaterialui:lab:0.4.5")
+//                implementation("org.jetbrains.kotlinx:kotlinx-html-js") {
+//                    // pre.104 is required by subroh0508.net.kotlinmaterialui:core:0.4.2
+//                    version { strictly(Versions.kotlinxHtml) }
+//                }
 //                implementation("org.jetbrains:kotlin-css-js") {
 //                    // pre.104 is required by subroh0508.net.kotlinmaterialui:core:0.4.2
 //                    version { strictly("1.0.0-pre.104-kotlin-1.3.72") }
 //                }
-                implementation(npm("@material-ui/core", "~4.8"))
-                implementation(npm("@material-ui/icons", "~4.9"))
+                implementation(npm("@material-ui/core", "~4.11"))
+                implementation(npm("@material-ui/icons", "~4.9.1"))
 
                 implementation(npm("node-sass", "^4.12.0"))
                 implementation(npm("react", "^16.13.1"))
